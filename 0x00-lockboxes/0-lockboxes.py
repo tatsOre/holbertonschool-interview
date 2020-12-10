@@ -4,6 +4,8 @@
 
 def canUnlockAll(boxes):
     """Method that solves Lockboxes problem"""
+    if type(boxes) is not list or len(boxes) == 0:
+        return False
     unlocked = [False] * len(boxes)
     unlocked[0] = True
     keys = [0]
@@ -13,4 +15,4 @@ def canUnlockAll(boxes):
             if not unlocked[key] and key < len(boxes):
                 unlocked[key] = True
                 keys.append(key)
-    return False not in unlocked
+    return all(unlocked)
