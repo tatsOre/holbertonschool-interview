@@ -12,7 +12,7 @@ def canUnlockAll(boxes):
     while keys:
         index = keys.pop()
         for key in boxes[index]:
-            if not unlocked[key] and key < len(boxes):
+            if key < len(boxes) and not unlocked[key]:
                 unlocked[key] = True
                 keys.append(key)
     return all(unlocked)
