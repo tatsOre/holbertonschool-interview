@@ -18,14 +18,17 @@ class LogParsing:
         """
         try:
             for line in sys.stdin:
-                self.n_lines += 1
-                RESPONSE = re.findall(r'\s\d{3}', line)
-                CODE = RESPONSE[0].strip()
-                SIZE = 0 if len(RESPONSE) < 2 else RESPONSE[1].strip()
-                if CODE:
-                    self.log[CODE] = self.log.get(CODE, 0) + 1
-                    self.file_size += int(SIZE)
+                try:
+                    RESPONSE = re.findall(r'\s\d{3}', line)
+                    CODE = RESPONSE[0].strip()
+                    SIZE = RESPONSE[1].strip()
+                    if CODE:
+                        self.log[CODE] = self.log.get(CODE, 0) + 1
+                        self.file_size += int(SIZE)
+                except Exception:
+                    pass
 
+                self.n_lines += 1
                 if self.n_lines == 10:
                     self.print_log()
         except KeyboardInterrupt:

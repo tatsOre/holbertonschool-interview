@@ -7,6 +7,7 @@ if __name__ == '__main__':
     log = {'200': 0, '301': 0, '400': 0, '401': 0,
            '403': 0, '404': 0, '405': 0, '500': 0}
     file_size = 0
+    n_lines = 0
 
     def print_log():
         """ Method that prints metrics """
@@ -15,8 +16,8 @@ if __name__ == '__main__':
             if log[code]:
                 print("{}: {}".format(code, log[code]))
     try:
-        n_lines = 0
         for line in sys.stdin:
+            n_lines += 1
             try:
                 response = line.split()
                 code = response[-2]
@@ -24,14 +25,12 @@ if __name__ == '__main__':
                 if code in log:
                     log[code] += 1
                     file_size += int(size)
-            except:
+            except Exception:
                 pass
-
-            n_lines += 1
-
             if n_lines == 10:
                 n_lines = 0
                 print_log()
+
     except KeyboardInterrupt:
         print_log()
         raise
