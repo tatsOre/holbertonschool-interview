@@ -10,10 +10,10 @@ if __name__ == '__main__':
 
     def print_log():
         """ Method that prints metrics """
-        print("File size:", file_size)
+        print("File size: {}".format(file_size))
         for code in sorted(log.keys()):
             if log[code]:
-                print(f"{code}: {log[code]}")
+                print("{}: {}".format(code, log[code]))
     try:
         n_lines = 0
         for line in sys.stdin:
