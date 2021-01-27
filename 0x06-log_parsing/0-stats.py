@@ -4,44 +4,32 @@ import re
 import sys
 
 
-class LogParsing:
-    """ Parses a Log and computes metrics"""
-    def __init__(self):
-        self.log = {}
-        self.file_size = 0
-        self.n_lines = 0
-
-    def read_stdin(self):
-        """
-        Method that reads stdin line by line and parses
-        response code and file size
-        """
-        try:
-            for line in sys.stdin:
-                self.n_lines += 1
-                RESPONSE = re.findall(r'\s\d{3}', line)
-                CODE = RESPONSE[0].strip()
-                SIZE = 0 if len(RESPONSE) < 2 else RESPONSE[1].strip()
-                if CODE:
-                    self.log[CODE] = self.log.get(CODE, 0) + 1
-                    self.file_size += int(SIZE)
-
-                if self.n_lines == 10:
-                    self.print_log()
-        except KeyboardInterrupt:
-            self.print_log()
-            raise
-        else:
-            self.print_log()
-
-    def print_log(self):
-        """ Method that prints metrics """
-        self.n_lines = 0
-        print("File size:", self.file_size)
-        for code in sorted(self.log.keys()):
-            print(f"{code}: {self.log[code]}")
-
-
 if __name__ == '__main__':
-    s = LogParsing()
-    s.read_stdin()
+    n_lines = 0
+    file_size = 0
+    log = {}
+
+    def print_log():
+        """ Method that prints metrics """
+        print("File size:", file_size)
+        for code in sorted(log.keys()):
+            print(f"{code}: {log[code]}")
+    try:
+        for line in sys.stdin:
+            print("n line es", n_lines)
+            n_lines += 1
+            RESPONSE = re.findall(r'\s\d{3}', line)
+            CODE = RESPONSE[0].strip()
+            SIZE = 0 if len(RESPONSE) < 2 else RESPONSE[1].strip()
+            if CODE:
+                log[CODE] = log.get(CODE, 0) + 1
+                file_size += int(SIZE)
+
+            if n_lines == 10:
+                n_lines = 0
+                print_log()
+    except KeyboardInterrupt:
+        print_log()
+        raise
+    else:
+        print_log()
