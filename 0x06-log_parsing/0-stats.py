@@ -16,7 +16,6 @@ if __name__ == '__main__':
             print(f"{code}: {log[code]}")
     try:
         for line in sys.stdin:
-            print("n line es", n_lines)
             n_lines += 1
             RESPONSE = re.findall(r'\s\d{3}', line)
             CODE = RESPONSE[0].strip()
