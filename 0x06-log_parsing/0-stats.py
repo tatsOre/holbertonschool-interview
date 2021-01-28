@@ -17,7 +17,6 @@ if __name__ == '__main__':
                 print("{}: {}".format(code, log[code]))
     try:
         for line in sys.stdin:
-            n_lines += 1
             try:
                 response = line.split()
                 code = response[-2]
@@ -27,6 +26,7 @@ if __name__ == '__main__':
                     file_size += int(size)
             except Exception:
                 pass
+            n_lines += 1
             if n_lines == 10:
                 n_lines = 0
                 print_log()
