@@ -5,7 +5,7 @@
  *
  * @row:  position x
  * @col:  position y
- * 
+ *
  * Return: 1 to fill | 0 to keep empty
  */
 int fill(int row, int col)
