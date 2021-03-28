@@ -8,10 +8,10 @@ Function that searches for a value in a sorted skip list of integers.
 * Where `list` is a pointer to the head of the skip list to search in
 * A node of the express lane is placed every index which is a multiple of the square root of the size of the list
 * And `value` is the value to search for
-* You can assume that `list` will be sorted in ascending order
-* Your function must return a pointer on the first node where `value` is located
-* If `value` is not present in `list` or if `head` is `NULL`, your function must return `NULL`
-* Every time you compare a value in the list to the value you are searching, you have to print this value (see example below)
+* `list` will be sorted in ascending order
+* The function returns a pointer on the first node where `value` is located
+* If `value` is not present in `list` or if `head` is `NULL`, the function will return `NULL`
+* Every time a value is compared in the list to the searched value, this value will be printed
 
 ### Author:
 * Tatiana Orejuela Zapata | [Github](https://github.com/tatsOre)
