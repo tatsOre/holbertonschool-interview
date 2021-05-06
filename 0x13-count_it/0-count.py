@@ -1,7 +1,13 @@
 #!/usr/bin/python3
-"""Recursive function that queries the Reddit API and prints the count
+"""
+Recursive function that queries the Reddit API and prints the count
 of the frequency of specific words in the titles of all hot articles
-for a given subreddit"""
+for a given subreddit
+Notes:
+    sorted returns a list of tuples:
+    [('java', 27), ('javascript', 27), ('python', 53), ...] then,
+    cast the list of tuples to a dict
+"""
 import requests
 
 
@@ -32,10 +38,7 @@ def count_words(subreddit, word_list, allposts={}, after=""):
     if after:
         return count_words(subreddit, word_list, allposts, after)
     else:
-        # sorted returns a list of tuples
-        # [('java', 27), ('javascript', 27), ('python', 53), ...]
         sorted_dict = dict(sorted(allposts.items()))
-        # cast the list to dictionary
         for key, value in sorted_dict.items():
             print(f"{key}: {value}")
         return sorted_dict
