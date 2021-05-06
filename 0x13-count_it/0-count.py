@@ -16,8 +16,8 @@ def count_words(subreddit, word_list, allposts={}, after=""):
     Prints a sorted count of given keywords
     (<word_list>: case-insensitive, delimited by spaces)
     """
-    base_url = 'https://www.reddit.com/r/'
-    endpoint = f'{base_url}{subreddit}.json?after={after}'
+    base_url = 'https://api.reddit.com/r/'
+    endpoint = f'{base_url}{subreddit}/hot?after={after}'
     headers = {'user-agent': 'holbie1626_t100_2021'}
     word_list = set([word.lower() for word in word_list])
 
@@ -29,6 +29,7 @@ def count_words(subreddit, word_list, allposts={}, after=""):
     data = response.json()
     after = data.get('data').get('after')
     posts = data.get('data').get('children')
+
     if posts:
         for post in posts:
             title = post.get('data').get('title').lower().split()
