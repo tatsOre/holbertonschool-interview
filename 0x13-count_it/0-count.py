@@ -3,11 +3,9 @@
 Recursive function that queries the Reddit API and prints the count
 of the frequency of specific words in the titles of all hot articles
 for a given subreddit
-Notes:
-    sorted returns a list of tuples:
-    [('java', 27), ('javascript', 27), ('python', 53), ...] then,
-    cast the list of tuples to a dict
 """
+
+
 import requests
 
 
