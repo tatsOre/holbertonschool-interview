@@ -11,6 +11,9 @@ def makeChange(coins, total):
     Given a pile of coins of different values, determine the fewest number
     of coins needed to meet a given amount `total`.
     """
+    if total <= 0:
+        return 0
+
     fewest = 0
     sorted_coins = sorted(coins, reverse=True)
     sorted_index = 0
@@ -23,6 +26,6 @@ def makeChange(coins, total):
             sorted_index = sorted_index + 1
 
     if total != 0:
-        fewest = -1
+        return -1
 
     return fewest
